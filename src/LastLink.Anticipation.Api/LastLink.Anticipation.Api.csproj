@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LastLink.Anticipation.Application\LastLink.Anticipation.Application.csproj" /> <ProjectReference Include="..\LastLink.Anticipation.Infrastructure\LastLink.Anticipation.Infrastructure.csproj" /> <ProjectReference Include="..\LastLink.Anticipation.Domain\LastLink.Anticipation.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    
+  </ItemGroup>
+</Project>
