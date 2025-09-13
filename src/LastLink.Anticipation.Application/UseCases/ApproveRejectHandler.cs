@@ -7,15 +7,15 @@ public class ApproveRejectHandler
     public ApproveRejectHandler(IAnticipationRepository repo) => _repo = repo;
     public async Task<AnticipationResponseDto> ApproveAsync(Guid id, CancellationToken ct = default)
     {
-        var entity = await _repo.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException("Solicitação não encontrada.");
-        entity.Approve(); // BUG: entity not tracked
+        var entity = await _repo.GetByIdForUpdateAsync(id, ct) ?? throw new KeyNotFoundException("Solicitação não encontrada.");
+        entity.Approve();
         await _repo.SaveChangesAsync(ct);
         return new AnticipationResponseDto(entity.Id, entity.CreatorId, entity.RequestedAmount, entity.NetAmount, entity.RequestedAt, entity.Status);
     }
     public async Task<AnticipationResponseDto> RejectAsync(Guid id, CancellationToken ct = default)
     {
-        var entity = await _repo.GetByIdAsync(id, ct) ?? throw new KeyNotFoundException("Solicitação não encontrada.");
-        entity.Reject(); // BUG: entity not tracked
+        var entity = await _repo.GetByIdForUpdateAsync(id, ct) ?? throw new KeyNotFoundException("Solicitação não encontrada.");
+        entity.Reject();
         await _repo.SaveChangesAsync(ct);
         return new AnticipationResponseDto(entity.Id, entity.CreatorId, entity.RequestedAmount, entity.NetAmount, entity.RequestedAt, entity.Status);
     }
