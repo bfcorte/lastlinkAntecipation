@@ -11,6 +11,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AnticipationDbContext>(o => o.UseInMemoryDatabase("anticipation-db"));
 builder.Services.AddScoped<IAnticipationRepository, AnticipationRepository>();
 builder.Services.AddScoped<CreateAnticipationHandler>();
+builder.Services.AddScoped<ListByCreatorHandler>();
+builder.Services.AddScoped<ApproveRejectHandler>();
 var app = builder.Build();
 if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); }
 app.UseHttpsRedirection();
