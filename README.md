@@ -1,6 +1,6 @@
 # LastLink Anticipation API
 
-Serviço criado encima da proposta da LastLink. O criador solicita é aplicado a taxa de 5% é entrado na fila para aprovação ou não.
+Serviço criado encima da proposta da LastLink.
 
 ## Requisitos
 - .NET 8 SDK
@@ -54,6 +54,14 @@ curl "http://localhost:5000/api/v1/anticipations/simulate?valor_solicitado=250"
 - Persistência InMemory (EF Core). Dá para trocar por banco depois.
 - Versionamento: `/api/v1/...`
 - Swagger ligado e `/` redireciona para `/swagger` no localhost.
+
+### Status (enum)
+| code | name     | meaning                              | when                      |
+| ---: | -------- | ------------------------------------ | ------------------------- |
+|    0 | Pending  | criado e aguardando análise          | ao criar a solicitação    |
+|    1 | Approved | aprovado; não pode mais ser alterado | após `POST /{id}/approve` |
+|    2 | Rejected | recusado; não pode mais ser alterado | após `POST /{id}/reject`  |
+
 
 ## Testes
 ```bash
