@@ -1,5 +1,6 @@
 using LastLink.Anticipation.Application.DTOs;
 using LastLink.Anticipation.Application.UseCases;
+using LastLink.Anticipation.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LastLink.Anticipation.Api.Controllers;
@@ -34,5 +35,13 @@ public class AnticipationsController : ControllerBase
         try { return Ok(await handler.RejectAsync(id, ct)); }
         catch (KeyNotFoundException ex) { return NotFound(new { message = ex.Message }); }
         catch (InvalidOperationException ex) { return BadRequest(new { message = ex.Message }); }
+    }
+
+    [HttpGet("simulate")]
+    public ActionResult<object> Simulate([FromQuery(Name = "valor_solicitado")] decimal valorSolicitado)
+    {
+        if (valorSolicitado <= 100m) return BadRequest(new { message = "Min R$100,00" });
+        var net = AnticipationRequest.CalculateNet(valorSolicitado);
+        return Ok(new { valor_bruto = valorSolicitado, taxa = AnticipationRequest.FeeRate, valor_liquido = net, status = "simulado" });
     }
 }

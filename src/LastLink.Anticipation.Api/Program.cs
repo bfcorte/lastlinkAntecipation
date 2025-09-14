@@ -13,8 +13,10 @@ builder.Services.AddScoped<IAnticipationRepository, AnticipationRepository>();
 builder.Services.AddScoped<CreateAnticipationHandler>();
 builder.Services.AddScoped<ListByCreatorHandler>();
 builder.Services.AddScoped<ApproveRejectHandler>();
+
 var app = builder.Build();
-if (app.Environment.IsDevelopment()) { app.UseSwagger(); app.UseSwaggerUI(); }
-app.UseHttpsRedirection();
+app.UseSwagger();
+app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "LastLink Anticipation API v1"); });
+app.MapGet("/", () => Results.Redirect("/swagger"));
 app.MapControllers();
 app.Run();
