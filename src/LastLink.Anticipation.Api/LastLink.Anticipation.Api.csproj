@@ -5,7 +5,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LastLink.Anticipation.Application\LastLink.Anticipation.Application.csproj" /> <ProjectReference Include="..\LastLink.Anticipation.Infrastructure\LastLink.Anticipation.Infrastructure.csproj" /> <ProjectReference Include="..\LastLink.Anticipation.Domain\LastLink.Anticipation.Domain.csproj" />
+    <ProjectReference Include="..\LastLink.Anticipation.Application\LastLink.Anticipation.Application.csproj" />
+    <ProjectReference Include="..\LastLink.Anticipation.Infrastructure\LastLink.Anticipation.Infrastructure.csproj" />
+    <ProjectReference Include="..\LastLink.Anticipation.Domain\LastLink.Anticipation.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
